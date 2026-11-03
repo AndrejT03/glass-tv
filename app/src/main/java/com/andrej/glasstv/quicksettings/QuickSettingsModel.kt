@@ -17,22 +17,25 @@ enum class QuickButton { Speakers, Network, PictureSettings, DisplaySound, Setti
 
 /**
  * The tabs along the bottom, where tvOS 26's player has Info and Continue Watching, in TCL's order:
- * the settings with a value to show (the switches On or Off), across the whole width.
+ * the settings with a value to show (the switches On or Off), across the whole width. Close, where
+ * TCL has Game Master, quits the app in front ([AppCloser]).
  */
-enum class QuickPill { Picture, Sound, SleepTimer, GameMaster, Bluetooth, Cec }
+enum class QuickPill { Picture, Sound, SleepTimer, CloseApp, Bluetooth, Cec }
 
 /**
  * What the TV says of its settings when the quick settings open: the sound mode (TCL's number for
- * it), HDMI-CEC (TCL's T-Link) and Bluetooth on or off, and the HDMI port it shows (TCL's
- * EnInputSource, for Game Master). Null where it doesn't say.
+ * it), HDMI-CEC (TCL's T-Link) and Bluetooth on or off. Null where it doesn't say.
  */
-data class QuickToggles(val soundMode: Int?, val cec: Boolean?, val bluetooth: Boolean?, val hdmiSource: Int?)
+data class QuickToggles(val soundMode: Int?, val cec: Boolean?, val bluetooth: Boolean?)
+
+/** The app in front, which Close quits: its package and its name. */
+data class OpenApp(val packageName: String, val label: String)
 
 /** The rows of the quick settings, bottom to top: the tabs, the volume bar, the brightness bar, the round buttons. */
 enum class QuickRow { Pills, Volume, Brightness, Buttons }
 
 /** What OK asks the host to do, closing the quick settings for it. */
-enum class QuickAction { Speakers, Sound, PictureMenu, Bluetooth, Network, PictureSettings, DisplaySound, Settings, GameMaster, Cec }
+enum class QuickAction { Speakers, Sound, PictureMenu, Bluetooth, Network, PictureSettings, DisplaySound, Settings, GameMaster, Cec, CloseApp }
 
 /**
  * Where the remote is in the quick settings, and what they show: the picture preset and the
@@ -48,6 +51,7 @@ class QuickSettingsModel(
     val timer: SleepTimer,
     private val readToggles: () -> QuickToggles,
     private val setSound: (Int) -> Unit,
+    private val readOpenApp: () -> OpenApp?,
 ) {
     var row by mutableStateOf(QuickRow.Pills)
         private set
@@ -77,11 +81,11 @@ class QuickSettingsModel(
         private set
 
     /** The switches, as [QuickToggles] reads them. */
-    var toggles by mutableStateOf(QuickToggles(null, null, null, null))
+    var toggles by mutableStateOf(QuickToggles(null, null, null))
         private set
 
-    /** Game Master on the HDMI port in front: 2 Auto, 1 On, 0 Off; null where it can't be read. */
-    var gameMaster by mutableStateOf<Int?>(null)
+    /** The app Close would quit; null on the home screen and over the TV's inputs (an HDMI picture). */
+    var openApp by mutableStateOf<OpenApp?>(null)
         private set
 
     fun reset() {
@@ -92,7 +96,7 @@ class QuickSettingsModel(
         option = 0
         hasBrightness = picture.available
         toggles = readToggles()
-        picture.readGameMode(toggles.hdmiSource) { gameMaster = it }
+        openApp = readOpenApp()
         volume.refresh()
         picture.read { m, b ->
             mode = m
@@ -227,8 +231,9 @@ class QuickSettingsModel(
                 // A mode the list hasn't, or none the TV tells of: TCL's own pop-up shows its modes.
                 QuickPill.Sound -> if (chosen(QuickPill.Sound) >= 0) open(QuickPill.Sound) else QuickAction.Sound
                 QuickPill.SleepTimer -> open(QuickPill.SleepTimer)
-                // TCL keeps these per HDMI port and in its HDMI-CEC service, closed to apps: its own screens set them.
-                QuickPill.GameMaster -> QuickAction.GameMaster
+                // Nothing to quit on the home screen or over an input: OK leaves the quick settings up.
+                QuickPill.CloseApp -> if (openApp != null) QuickAction.CloseApp else null
+                // TCL keeps HDMI-CEC in its own service, closed to apps: its own screen sets it.
                 QuickPill.Bluetooth -> QuickAction.Bluetooth
                 QuickPill.Cec -> QuickAction.Cec
             }

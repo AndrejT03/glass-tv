@@ -46,7 +46,8 @@ import kotlinx.coroutines.delay
  */
 class QuickSettingsOverlay(private val service: AccessibilityService) {
     private val glass get() = GlassApp.instance
-    private val model = QuickSettingsModel(glass.picture, glass.volume, glass.sleepTimer, ::toggles, ::setSoundMode)
+    private val model = QuickSettingsModel(glass.picture, glass.volume, glass.sleepTimer, ::toggles, ::setSoundMode, ::openApp)
+    private val closer = AppCloser(service)
     private val sounds = Sounds(service, glass.prefs)
     private val handler = Handler(Looper.getMainLooper())
     private val idle = Runnable { hide() }
@@ -58,6 +59,9 @@ class QuickSettingsOverlay(private val service: AccessibilityService) {
     /** The quick settings are up, and the remote's arrows, OK and Back are theirs. */
     var isOpen = false
         private set
+
+    /** Close is quitting an app: the TV's settings are on screen under a cover, and the remote waits. */
+    val isClosing get() = closer.busy
 
     private val window = OverlayWindow(service, 1f, Gravity.START, QUICK_REACH) {
         // Laid out on the whole screen, its bottom on the window's: the controls' places are the screen's.
@@ -186,7 +190,8 @@ class QuickSettingsOverlay(private val service: AccessibilityService) {
         }
         sounds.select()
         hide()
-        run(service, action)
+        val app = model.openApp
+        if (action == QuickAction.CloseApp && app != null) closer.close(app) else run(service, action)
     }
 
     /**
@@ -234,17 +239,24 @@ class QuickSettingsOverlay(private val service: AccessibilityService) {
     private fun toggles(): QuickToggles {
         val resolver = service.contentResolver
         fun global(key: String) = runCatching { Settings.Global.getInt(resolver, key, -1) }.getOrDefault(-1).takeIf { it >= 0 }
-        fun secure(key: String) = runCatching { Settings.Secure.getInt(resolver, key, -1) }.getOrDefault(-1)
-        // The TV input in front, as TCL notes it (its HDMI ports are devices 15, 16, 17 and 18), or,
-        // away from them (the home screen is device 21), the HDMI port it goes back to.
-        val device = secure(TCL_INPUT_DEVICE).takeIf { it in HDMI_DEVICES } ?: secure(TCL_LAST_INPUT_DEVICE)
-        val port = if (device in HDMI_DEVICES) device - HDMI_DEVICES.first + 1 else null
         return QuickToggles(
             soundMode = soundMode(),
             cec = global(HDMI_CONTROL_ENABLED)?.let { it == 1 },
             bluetooth = global(Settings.Global.BLUETOOTH_ON)?.let { it == 1 },
-            hdmiSource = port?.let(TvPicture::hdmi),
         )
+    }
+
+    /**
+     * The app in front, for Close: none on the home screen, over the TV's own player (an input: HDMI 1
+     * is no app to quit) or over the TV's settings, whose own page would be the one quitting it.
+     */
+    private fun openApp(): OpenApp? {
+        val pkg = glass.recents.front ?: return null
+        if (pkg == glass.inputs.playerPackage || pkg == closer.settingsPackage) return null
+        val label = glass.apps.all.firstOrNull { it.packageName == pkg }?.label
+            ?: runCatching { service.packageManager.getApplicationLabel(service.packageManager.getApplicationInfo(pkg, 0)).toString() }.getOrNull()
+            ?: return null
+        return OpenApp(pkg, label)
     }
 
     fun destroy() {
@@ -252,6 +264,7 @@ class QuickSettingsOverlay(private val service: AccessibilityService) {
         stopHolding()
         handler.removeCallbacks(soundTaken)
         window.destroy()
+        closer.destroy()
         sounds.release()
     }
 
@@ -280,11 +293,8 @@ class QuickSettingsOverlay(private val service: AccessibilityService) {
         private const val GAME_MODE = "com.android.tv.settings.gamemode"
         private const val CEC = "com.android.tv.settings.CEC"
         private const val HDMI_CONTROL_ENABLED = "hdmi_control_enabled"
-        private const val TCL_INPUT_DEVICE = "tcl_sys_tv_input_current_device_id"
-        private const val TCL_LAST_INPUT_DEVICE = "tcl_sys_tv_input_last_device_id"
         // Where TCL's audio service keeps the sound mode (TclSoundEffect), which only it may set.
         private const val TCL_SOUND_MODE = "tcl_sys_audio_sound_mode"
-        private val HDMI_DEVICES = 15..18
 
         /** Opens what [action] is for; false when nothing on the TV took it. Also for the iPhone app. */
         fun run(context: Context, action: QuickAction): Boolean =
@@ -299,6 +309,8 @@ class QuickSettingsOverlay(private val service: AccessibilityService) {
                 QuickAction.GameMaster -> open(context, Intent(GAME_MODE))
                 QuickAction.Cec -> open(context, Intent(CEC))
                 QuickAction.Settings -> Controls.systemSettings(context)
+                // Only the quick settings over the app quit it ([AppCloser]): it takes the accessibility service.
+                QuickAction.CloseApp -> false
             }
 
         /** One of TCL's pop-ups; Back closes it back to what was in front (TCL opens its Settings otherwise). */

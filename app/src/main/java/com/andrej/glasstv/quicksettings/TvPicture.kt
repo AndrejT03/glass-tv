@@ -61,20 +61,6 @@ class TvPicture(private val prefs: Prefs) {
     }
 
     /**
-     * Reads Game Master on an HDMI port ([source], one of TCL's EnInputSource: [hdmi]): TCL keeps it
-     * per port, 2 Auto, 1 On, 0 Off (TvSettings shows 2 minus it as its place among Auto, On and Off).
-     * Null where it can't be read.
-     */
-    fun readGameMode(source: Int?, done: (Int?) -> Unit) = handler.post {
-        val mode = when {
-            source == null -> null
-            demo -> 2
-            else -> call(GET_GAME_MODE_CONFIG, source)
-        }
-        main.post { done(mode) }
-    }
-
-    /**
      * Sets the picture preset as TCL's settings do: `setPictureModeByType(window 0, EN_APPLY_CURRENT,
      * mode, EN_PICTURE_MODE_FIELD_NORMAL, EN_TCL_ACT_EXEC_SAVE)`, then the household's backlight in it.
      * [done] gets the preset the TV is on afterwards, read back.
@@ -140,9 +126,6 @@ class TvPicture(private val prefs: Prefs) {
     }
 
     companion object {
-        /** TCL's EnInputSource for HDMI [port] (1..4), as its picture service takes it. */
-        fun hdmi(port: Int) = 7 + port
-
         private const val TAG = "TvPicture"
         private const val SERVICE = "tcl_tv_display"
         private const val DESCRIPTOR = "com.tcl.tv.display.ITvDisplayManagerService"
@@ -151,7 +134,6 @@ class TvPicture(private val prefs: Prefs) {
         private const val GET_PICTURE_MODE = 27
         private const val SET_BACKLIGHT = 100
         private const val GET_BACKLIGHT = 101
-        private const val GET_GAME_MODE_CONFIG = 160
         private const val SET_PICTURE_MODE_BY_TYPE = 182
 
         // Ordinals of TCL's EnApplyType, EnPicModeFieldType and EnTclActType.

@@ -92,10 +92,14 @@ data class Strings(
     val sleepTimer: String,
     /** The sleep timer's choices, in SleepTimer.CHOICES's order (Off last). */
     val sleepChoices: List<String>,
-    /** The rest of TCL's Quick Settings: its game mode, HDMI-CEC (T-Link), and the screens it opens. */
-    val gameMaster: String,
-    /** Game Master's third setting, beside on and off. */
-    val auto: String,
+    /** The quick settings' tab that quits the app in front (where TCL's bar has Game Master). */
+    val closeApp: String,
+    /** The cover while it quits the app: under the app's name, while it does, and once it has. */
+    val closing: String,
+    val closed: String,
+    val cacheCleared: String,
+    val couldNotClose: String,
+    /** The rest of TCL's Quick Settings: HDMI-CEC (T-Link), and the screens it opens. */
     val cec: String,
     val network: String,
     val pictureSettings: String,
@@ -170,8 +174,11 @@ val MK = Strings(
     speakers = "Звучници",
     sleepTimer = "Тајмер за спиење",
     sleepChoices = listOf("2 часа", "1 час", "30 минути", "15 минути", "Исклучен"),
-    gameMaster = "Game Master",
-    auto = "Авто",
+    closeApp = "Затвори",
+    closing = "Се затвора…",
+    closed = "Затворена",
+    cacheCleared = "кешот е исчистен",
+    couldNotClose = "Не можеше да се затвори",
     cec = "HDMI-CEC",
     network = "Мрежа",
     pictureSettings = "Поставки за слика",
@@ -245,8 +252,11 @@ val EN = Strings(
     speakers = "Speakers",
     sleepTimer = "Sleep Timer",
     sleepChoices = listOf("2 Hours", "1 Hour", "30 Minutes", "15 Minutes", "Off"),
-    gameMaster = "Game Master",
-    auto = "Auto",
+    closeApp = "Close",
+    closing = "Closing…",
+    closed = "Closed",
+    cacheCleared = "cache cleared",
+    couldNotClose = "Couldn't close it",
     cec = "HDMI-CEC",
     network = "Network",
     pictureSettings = "Picture Settings",

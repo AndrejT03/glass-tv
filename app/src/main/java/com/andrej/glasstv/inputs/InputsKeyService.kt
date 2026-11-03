@@ -60,6 +60,9 @@ class InputsKeyService : AccessibilityService() {
         val menu = overlay ?: return false
         val center = controlCenter ?: return false
         val quick = quickSettings ?: return false
+        // While the quick settings' Close quits an app, the TV's settings are on screen under its
+        // cover, being pressed: the remote waits (Power aside).
+        if (quick.isClosing) return event.keyCode != KeyEvent.KEYCODE_POWER
         // The rest of a Home press the service took, also once holding it has opened the control center.
         if (event.keyCode == KeyEvent.KEYCODE_HOME && homeTaken) return home(event)
         if (event.keyCode in QUICK_SETTINGS_KEYS) {
@@ -151,6 +154,8 @@ class InputsKeyService : AccessibilityService() {
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         if (event?.eventType != AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) return
         val pkg = event.packageName?.toString() ?: return
+        // The settings page Close goes through is no app the household opened.
+        if (quickSettings?.isClosing == true) return
         // Only an activity is an app coming to the front: TCL's panels over the picture (its settings
         // app's windows, as the sound mode shows one), dialogs and the keyboard leave it as it is.
         if (!isActivity(pkg, event.className)) return

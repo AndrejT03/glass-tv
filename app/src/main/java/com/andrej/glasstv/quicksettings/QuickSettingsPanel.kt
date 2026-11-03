@@ -415,7 +415,7 @@ private fun Tabs(model: QuickSettingsModel, shown: Boolean, tabs: SnapshotStateM
             QuickPill.Picture -> strings.picture
             QuickPill.Sound -> strings.sound
             QuickPill.SleepTimer -> strings.sleepTimer
-            QuickPill.GameMaster -> strings.gameMaster
+            QuickPill.CloseApp -> strings.closeApp
             QuickPill.Bluetooth -> "Bluetooth"
             QuickPill.Cec -> strings.cec
         }
@@ -423,12 +423,7 @@ private fun Tabs(model: QuickSettingsModel, shown: Boolean, tabs: SnapshotStateM
             QuickPill.Picture -> pictureName(model.mode, strings)
             QuickPill.Sound -> model.toggles.soundMode?.let { strings.soundModes.getOrNull(it)?.takeIf(String::isNotEmpty) }
             QuickPill.SleepTimer -> if (endsAt != null) countdown(left) else strings.sleepChoices.last()
-            QuickPill.GameMaster -> when (model.gameMaster) {
-                2 -> strings.auto
-                1 -> strings.on
-                0 -> strings.off
-                else -> null
-            }
+            QuickPill.CloseApp -> model.openApp?.label
             QuickPill.Bluetooth -> onOff(model.toggles.bluetooth)
             QuickPill.Cec -> onOff(model.toggles.cec)
         }
@@ -473,15 +468,17 @@ private fun Tabs(model: QuickSettingsModel, shown: Boolean, tabs: SnapshotStateM
                     left = lefts[i],
                     focused = model.list == null && model.row == QuickRow.Pills && model.pill == pill,
                     opened = model.list == pill,
+                    // Close with nothing to quit (the home screen, an input) is there, but faint.
+                    enabled = pill != QuickPill.CloseApp || model.openApp != null,
                 )
             }
         }
     }
 }
 
-/** A tab [width] units wide from [left], its text at [scale] of its size and centred in it. */
+/** A tab [width] units wide from [left], its text at [scale] of its size and centred in it; faint unless [enabled]. */
 @Composable
-private fun Tab(label: String, value: String?, scale: Float, width: Float, left: Float, focused: Boolean, opened: Boolean) {
+private fun Tab(label: String, value: String?, scale: Float, width: Float, left: Float, focused: Boolean, opened: Boolean, enabled: Boolean) {
     val focus = animateFloatAsState(if (focused) 1f else 0f, Motion.Focus, label = "qsTab")
     // The tab whose list is open stays a little lit under it.
     val open = animateFloatAsState(if (opened) 1f else 0f, tween(180), label = "qsTabOpen")
@@ -491,7 +488,8 @@ private fun Tab(label: String, value: String?, scale: Float, width: Float, left:
         at = Offset(left, PILL_TOP),
         Modifier.width(width.dp).fillMaxHeight(),
         lit = { focus.value + 0.2f * open.value * (1f - focus.value) },
-    ) { ink ->
+    ) { full ->
+        val ink = if (enabled) full else full.copy(alpha = full.alpha * 0.4f)
         Row(Modifier.matchParentSize(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
             BasicText(label, style = TabStyle.copy(color = ink, fontSize = TabStyle.fontSize * scale), maxLines = 1)
             if (value != null) {

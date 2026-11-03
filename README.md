@@ -105,14 +105,22 @@ Liquid Glass surfaces, a huge Lock Screen style clock, tvOS focus motion and App
   the remote's own volume buttons too). Up from the tabs reaches them, Left/Right move them, held for
   bigger steps. Along the bottom, tabs:
   Picture with its preset, Sound with its mode (TCL's `tcl_sys_audio_sound_mode`, on this TV 0 Standard,
-  1 Movie, 2 Music, 3 Voice, 4 Game, 5 Sport, 7 Intelligent, read off its pop-up), Sleep Timer, Game Master (Auto, On or Off), Bluetooth and HDMI-CEC
+  1 Movie, 2 Music, 3 Voice, 4 Game, 5 Sport, 7 Intelligent, read off its pop-up), Sleep Timer, Close
+  (with the name of the app in front, where TCL's bar has Game Master), Bluetooth and HDMI-CEC
   (On or Off), filling the row from margin to margin (the room left over shared among them, their
-  text a little smaller where it wouldn't fit). Game Master is read from TCL's picture service for
-  the HDMI port in front (transaction 160 with TCL's EnInputSource, HDMI 1 = 8; the port from
-  `tcl_sys_tv_input_current_device_id`, devices 15–18), Bluetooth and HDMI-CEC from `bluetooth_on`
-  and `hdmi_control_enabled`. Game Master (TCL keeps it per HDMI port), Bluetooth (Remotes &
-  Accessories) and HDMI-CEC (TCL's T-Link, in its HDMI-CEC service) open TCL's own screens for them
-  (`com.android.tv.settings.gamemode`, `com.android.tv.settings.CEC`). TCL's Virtual Keyboard isn't there: TCL's bar sends its TV player
+  text a little smaller where it wouldn't fit). Bluetooth and HDMI-CEC are read from `bluetooth_on`
+  and `hdmi_control_enabled`; Bluetooth (Remotes & Accessories) and HDMI-CEC (TCL's T-Link, in its
+  HDMI-CEC service) open TCL's own screens for them (`com.android.tv.settings.CEC`). Close quits the
+  app in front (`quicksettings/AppCloser.kt`): home, then the app's page in the TV's settings (App
+  info), where the accessibility service presses Force stop, OK, Clear cache, OK, as the remote
+  would, then Back to the home screen; only the system may stop another app or clear its cache, and
+  TCL has nothing that does it for one app. The buttons are found by TvSettings' own strings for
+  them (`device_apps_app_management_force_stop`, `_clear_cache`, `okay`), so in any language the TV
+  is in, with a search by text each time (the service's copy of the views goes stale once the page's
+  question has gone). Meanwhile the screen is covered in black with the app's icon and name ("Се
+  затвора…", then "Затворена · кешот е исчистен") and the remote waits; 2.5–4 s on the TV. On the
+  home screen, over an input (an HDMI picture is the TV's player, no app) and over the TV's settings
+  the tab is faint and OK does nothing. TCL's Virtual Keyboard isn't there: TCL's bar sends its TV player
   a key of TCL's own (4056), and no app may send keys to another. Adaptive brightness TCL only shows
   on models with a light sensor, which this one hasn't. Picture and Sleep Timer open their choices
   above the tab as tvOS 26's Control Center lists its sleep timer: glass capsules rising one after
