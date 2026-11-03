@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Glass</string>
+    <string name="dream_name">Glass Aerials</string>
+    <string name="inputs_service_name">Glass: Input button</string>
+    <string name="inputs_service_description">Opens Glass\'s inputs menu when the remote\'s Input button is pressed, and its control center when the Settings button is pressed or the Home button held, over any app. It only looks at the remote\'s buttons while one of them is open, and notes which app comes to the front, so the menu can offer the three apps opened last. Power Off puts the TV to sleep through it. When the Glass app on your iPhone asks, it also presses Restart in the TV\'s power menu, or a sound mode in its sound pop-up, as the remote would.</string>
+</resources>

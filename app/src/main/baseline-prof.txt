@@ -1,0 +1,5 @@
+# The launcher's own code, compiled ahead of time when the app is installed (profileinstaller, or
+# `cmd package compile -m speed-profile`), so the first moves along the dock, the first Top Shelf
+# and the first dock glass run at full speed on the TV's CPU instead of waiting for the JIT.
+HSPLcom/andrej/glasstv/**->**(**)**
+Lcom/andrej/glasstv/**;

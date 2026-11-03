@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The remote's keys (the Input button opens Glass's inputs menu over whatever is on screen), which
+     app comes to the front (the menu's recent apps), and the TV's own menus' buttons, which it reads
+     and presses only when the iPhone app asks (Restart in the power menu: remote/TvButtons.kt). TCL
+     hides its pop-ups' labels from accessibility (its sound pop-up does), so the service asks for
+     views marked unimportant too. -->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeWindowStateChanged"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:accessibilityFlags="flagRequestFilterKeyEvents|flagRetrieveInteractiveWindows|flagIncludeNotImportantViews"
+    android:canRequestFilterKeyEvents="true"
+    android:canRetrieveWindowContent="true"
+    android:description="@string/inputs_service_description"
+    android:notificationTimeout="0" />

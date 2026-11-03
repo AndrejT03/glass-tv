@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kodi — Top Shelf</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #08121F">
+<div style="position: absolute; left: 0; top: 0; width: 1920px; height: 720px; overflow: hidden; background: radial-gradient(ellipse 80% 100% at 50% 42%, #16354F 0%, #0B1B2C 66%, #060E18 100%); -webkit-box-reflect: below 0px">
+<svg width="1920" height="720" viewBox="0 0 1920 720" aria-hidden="true" style="position: absolute; left: 0; top: 0">
+<defs>
+<pattern id="kodiTiles" width="120" height="120" patternUnits="userSpaceOnUse">
+<rect x="35" y="35" width="50" height="50" rx="6" fill="#17B2E7" transform="rotate(45 60 60)"></rect>
+</pattern>
+<radialGradient id="kodiFade" cx="50%" cy="45%" r="60%">
+<stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"></stop>
+<stop offset="100%" stop-color="#FFFFFF" stop-opacity="1"></stop>
+</radialGradient>
+<mask id="kodiMask"><rect width="1920" height="720" fill="url(#kodiFade)"></rect></mask>
+</defs>
+<rect width="1920" height="720" fill="url(#kodiTiles)" opacity="0.1" mask="url(#kodiMask)"></rect>
+</svg>
+<div style="position: absolute; left: 560px; top: 180px; width: 800px; height: 380px; border-radius: 50%; background: radial-gradient(closest-side, rgba(23, 178, 231, 0.22), rgba(23, 178, 231, 0)); filter: blur(30px)"></div>
+<img src="/_blob/86cf87bcad5e90edd7506627ccbe72cc" alt="Kodi" style="position: absolute; left: 50%; top: 360px; width: 860px; transform: translate(-50%, -50%)">
+</div>
+<div style="position: absolute; left: 0; top: 700px; width: 1920px; height: 380px; backdrop-filter: blur(60px) saturate(1.2); -webkit-backdrop-filter: blur(60px) saturate(1.2); -webkit-mask-image: linear-gradient(180deg, transparent 0px, #000 60px); mask-image: linear-gradient(180deg, transparent 0px, #000 60px); background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(6,14,24,0.35) 100%)"></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1920,"height":1080}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

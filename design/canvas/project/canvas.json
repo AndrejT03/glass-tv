@@ -1,0 +1,260 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "APKMirror.dc.html": {
+      "h": 1080,
+      "title": "APKMirror Installer",
+      "w": 1920,
+      "x": 6000,
+      "y": 3600
+    },
+    "Alexa.dc.html": {
+      "h": 1080,
+      "title": "Works with Alexa",
+      "w": 1920,
+      "x": 6000,
+      "y": 6000
+    },
+    "AppleTV.dc.html": {
+      "h": 1080,
+      "title": "Apple TV",
+      "w": 1920,
+      "x": 4000,
+      "y": 0
+    },
+    "BrowseHere.dc.html": {
+      "h": 1080,
+      "title": "BrowseHere",
+      "w": 1920,
+      "x": 2000,
+      "y": 4800
+    },
+    "ButtonMapper.dc.html": {
+      "h": 1080,
+      "title": "Button Mapper TV",
+      "w": 1920,
+      "x": 0,
+      "y": 4800
+    },
+    "DisneyPlus.dc.html": {
+      "h": 1080,
+      "title": "Disney+",
+      "w": 1920,
+      "x": 6000,
+      "y": 0
+    },
+    "Downloader.dc.html": {
+      "h": 1080,
+      "title": "Downloader",
+      "w": 1920,
+      "x": 4000,
+      "y": 3600
+    },
+    "HBOMax.dc.html": {
+      "h": 1080,
+      "title": "HBO Max",
+      "w": 1920,
+      "x": 2000,
+      "y": 1200
+    },
+    "Kodi.dc.html": {
+      "h": 1080,
+      "title": "Kodi",
+      "w": 1920,
+      "x": 2000,
+      "y": 2400
+    },
+    "MagiConnect.dc.html": {
+      "h": 1080,
+      "title": "MagiConnect",
+      "w": 1920,
+      "x": 2000,
+      "y": 6000
+    },
+    "Main.dc.html": {
+      "h": 1080,
+      "title": "YouTube",
+      "w": 1920,
+      "x": 0,
+      "y": 0
+    },
+    "MediaPlayer.dc.html": {
+      "h": 1080,
+      "title": "Media Player",
+      "w": 1920,
+      "x": 6000,
+      "y": 7200
+    },
+    "Netflix.dc.html": {
+      "h": 1080,
+      "title": "Netflix",
+      "w": 1920,
+      "x": 2000,
+      "y": 0
+    },
+    "PlayGames.dc.html": {
+      "h": 1080,
+      "title": "Google Play Games",
+      "w": 1920,
+      "x": 0,
+      "y": 3600
+    },
+    "PlayMovies.dc.html": {
+      "h": 1080,
+      "title": "Google Play Movies",
+      "w": 1920,
+      "x": 6000,
+      "y": 2400
+    },
+    "PrimeVideo.dc.html": {
+      "h": 1080,
+      "title": "Prime Video",
+      "w": 1920,
+      "x": 0,
+      "y": 1200
+    },
+    "QuickPanel.dc.html": {
+      "h": 1080,
+      "title": "Quick Panel",
+      "w": 1920,
+      "x": 0,
+      "y": 7200
+    },
+    "SafetyGuard.dc.html": {
+      "h": 1080,
+      "title": "Safety Guard",
+      "w": 1920,
+      "x": 0,
+      "y": 6000
+    },
+    "Settings.dc.html": {
+      "h": 1080,
+      "title": "Settings",
+      "w": 1920,
+      "x": 2000,
+      "y": 3600
+    },
+    "Spotify.dc.html": {
+      "h": 1080,
+      "title": "Spotify",
+      "w": 1920,
+      "x": 4000,
+      "y": 1200
+    },
+    "Stremio.dc.html": {
+      "h": 1080,
+      "title": "Stremio",
+      "w": 1920,
+      "x": 0,
+      "y": 2400
+    },
+    "TCLChannel.dc.html": {
+      "h": 1080,
+      "title": "TCL Channel",
+      "w": 1920,
+      "x": 0,
+      "y": 8400
+    },
+    "TCLHome.dc.html": {
+      "h": 1080,
+      "title": "TCL Home",
+      "w": 1920,
+      "x": 4000,
+      "y": 4800
+    },
+    "TExhibition.dc.html": {
+      "h": 1080,
+      "title": "T-Exhibition",
+      "w": 1920,
+      "x": 6000,
+      "y": 4800
+    },
+    "TSolo.dc.html": {
+      "h": 1080,
+      "title": "T-Solo",
+      "w": 1920,
+      "x": 2000,
+      "y": 7200
+    },
+    "TV.dc.html": {
+      "h": 1080,
+      "title": "TV",
+      "w": 1920,
+      "x": 4000,
+      "y": 7200
+    },
+    "TuneIn.dc.html": {
+      "h": 1080,
+      "title": "TuneIn Radio",
+      "w": 1920,
+      "x": 4000,
+      "y": 2400
+    },
+    "UserGuide.dc.html": {
+      "h": 1080,
+      "title": "User Guide",
+      "w": 1920,
+      "x": 4000,
+      "y": 6000
+    },
+    "YouTubeMusic.dc.html": {
+      "h": 1080,
+      "title": "YouTube Music",
+      "w": 1920,
+      "x": 6000,
+      "y": 1200
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-22T17:45:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "title": {
+      "kind": "title1",
+      "maxW": 7920,
+      "text": "Glass TV — Top Shelf за твоите апликации",
+      "w": 240,
+      "x": 0,
+      "y": -320
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Netflix.dc.html",
+    "AppleTV.dc.html",
+    "DisneyPlus.dc.html",
+    "PrimeVideo.dc.html",
+    "HBOMax.dc.html",
+    "Spotify.dc.html",
+    "YouTubeMusic.dc.html",
+    "Stremio.dc.html",
+    "Kodi.dc.html",
+    "TuneIn.dc.html",
+    "PlayMovies.dc.html",
+    "PlayGames.dc.html",
+    "Settings.dc.html",
+    "Downloader.dc.html",
+    "APKMirror.dc.html",
+    "ButtonMapper.dc.html",
+    "BrowseHere.dc.html",
+    "TCLHome.dc.html",
+    "TExhibition.dc.html",
+    "SafetyGuard.dc.html",
+    "MagiConnect.dc.html",
+    "UserGuide.dc.html",
+    "Alexa.dc.html",
+    "QuickPanel.dc.html",
+    "TSolo.dc.html",
+    "TV.dc.html",
+    "MediaPlayer.dc.html",
+    "TCLChannel.dc.html"
+  ],
+  "pages": [],
+  "title": "Glass TV — Top Shelf банери"
+}

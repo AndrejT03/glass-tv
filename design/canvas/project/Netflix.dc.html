@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Netflix — Top Shelf</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #E9E9E9">
+<div style="position: absolute; left: 0; top: 0; width: 1920px; height: 720px; overflow: hidden; background: radial-gradient(ellipse 75% 95% at 50% 48%, #FFFFFF 0%, #F6F6F6 55%, #E2E2E2 100%); -webkit-box-reflect: below 0px">
+<div style="position: absolute; left: 360px; top: 380px; width: 1200px; height: 420px; border-radius: 50%; background: radial-gradient(closest-side, rgba(229, 9, 20, 0.14), rgba(229, 9, 20, 0)); filter: blur(30px)"></div>
+<img src="/_blob/18b9cf876c6819882334cc59dd0b6369" alt="Netflix" style="position: absolute; left: 50%; top: 360px; width: 900px; transform: translate(-50%, -50%)">
+</div>
+<div style="position: absolute; left: 0; top: 700px; width: 1920px; height: 380px; backdrop-filter: blur(60px) saturate(1.1); -webkit-backdrop-filter: blur(60px) saturate(1.1); -webkit-mask-image: linear-gradient(180deg, transparent 0px, #000 60px); mask-image: linear-gradient(180deg, transparent 0px, #000 60px); background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.06) 100%)"></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1920,"height":1080}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

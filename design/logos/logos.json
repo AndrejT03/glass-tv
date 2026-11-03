@@ -1,0 +1,226 @@
+{
+ "com.amazon.amazonvideo.livingroom": {
+  "label": "com.amazon.amazonvideo.livingroom",
+  "size": [
+   1086,
+   341
+  ],
+  "bg": "#0477ff"
+ },
+ "com.android.tv.settings": {
+  "label": "com.android.tv.settings",
+  "size": [
+   533,
+   560
+  ],
+  "bg": "#494d50"
+ },
+ "com.apkmirror.helper.prod": {
+  "label": "com.apkmirror.helper.prod",
+  "size": [
+   1045,
+   413
+  ],
+  "bg": "#ff8b13"
+ },
+ "com.apple.atve.androidtv.appletv": {
+  "label": "com.apple.atve.androidtv.appletv",
+  "size": [
+   824,
+   428
+  ],
+  "bg": "#222222"
+ },
+ "com.disney.disneyplus": {
+  "label": "com.disney.disneyplus",
+  "size": [
+   1053,
+   586
+  ],
+  "bg": "#146f7e"
+ },
+ "com.esaba.downloader": {
+  "label": "com.esaba.downloader",
+  "size": [
+   1063,
+   657
+  ],
+  "bg": "#f27622"
+ },
+ "com.google.android.play.games": {
+  "label": "com.google.android.play.games",
+  "size": [
+   1180,
+   400
+  ],
+  "bg": "#f4f4f4"
+ },
+ "com.google.android.videos": {
+  "label": "com.google.android.videos",
+  "size": [
+   1295,
+   436
+  ],
+  "bg": "#ffffff"
+ },
+ "com.google.android.youtube.tv": {
+  "label": "com.google.android.youtube.tv",
+  "size": [
+   1173,
+   284
+  ],
+  "bg": "#f4f4f4"
+ },
+ "com.netflix.ninja": {
+  "label": "com.netflix.ninja",
+  "size": [
+   1283,
+   364
+  ],
+  "bg": "#ffffff"
+ },
+ "com.spotify.tv.android": {
+  "label": "com.spotify.tv.android",
+  "size": [
+   1333,
+   420
+  ],
+  "bg": "#181313"
+ },
+ "com.stremio.one": {
+  "label": "com.stremio.one",
+  "size": [
+   1378,
+   398
+  ],
+  "bg": "#0b0b0b"
+ },
+ "com.tcl.browser": {
+  "label": "com.tcl.browser",
+  "size": [
+   883,
+   665
+  ],
+  "bg": "#3355da"
+ },
+ "com.tcl.dashboard": {
+  "label": "com.tcl.dashboard",
+  "size": [
+   796,
+   625
+  ],
+  "bg": "#ffffff"
+ },
+ "com.tcl.exhibit": {
+  "label": "com.tcl.exhibit",
+  "size": [
+   680,
+   631
+  ],
+  "bg": "#f3bd9f"
+ },
+ "com.tcl.guard": {
+  "label": "com.tcl.guard",
+  "size": [
+   931,
+   663
+  ],
+  "bg": "#445fe6"
+ },
+ "com.tcl.magiconnectfree": {
+  "label": "com.tcl.magiconnectfree",
+  "size": [
+   964,
+   633
+  ],
+  "bg": "#be372f"
+ },
+ "com.tcl.ocean.instructions": {
+  "label": "com.tcl.ocean.instructions",
+  "size": [
+   795,
+   626
+  ],
+  "bg": "#7887a1"
+ },
+ "com.tcl.smartalexa": {
+  "label": "com.tcl.smartalexa",
+  "size": [
+   1204,
+   584
+  ],
+  "bg": "#1f95be"
+ },
+ "com.tcl.suspension": {
+  "label": "com.tcl.suspension",
+  "size": [
+   846,
+   694
+  ],
+  "bg": "#7887a1"
+ },
+ "com.tcl.t_solo": {
+  "label": "com.tcl.t_solo",
+  "size": [
+   449,
+   625
+  ],
+  "bg": "#6957c7"
+ },
+ "com.tcl.tv": {
+  "label": "com.tcl.tv",
+  "size": [
+   909,
+   642
+  ],
+  "bg": "#d61617"
+ },
+ "com.tcl.ui_mediaCenter": {
+  "label": "com.tcl.ui_mediaCenter",
+  "size": [
+   941,
+   638
+  ],
+  "bg": "#6957c7"
+ },
+ "com.tcl.waterfall.overseas": {
+  "label": "com.tcl.waterfall.overseas",
+  "size": [
+   829,
+   574
+  ],
+  "bg": "#e83434"
+ },
+ "com.tv.remote.button.mapper.remap": {
+  "label": "com.tv.remote.button.mapper.remap",
+  "size": [
+   2181,
+   715
+  ],
+  "bg": "#01050c"
+ },
+ "com.wbd.stream": {
+  "label": "com.wbd.stream",
+  "size": [
+   1026,
+   746
+  ],
+  "bg": "#040811"
+ },
+ "org.xbmc.kodi": {
+  "label": "org.xbmc.kodi",
+  "size": [
+   1301,
+   445
+  ],
+  "bg": "#e1e1e1"
+ },
+ "tunein.player": {
+  "label": "tunein.player",
+  "size": [
+   1164,
+   524
+  ],
+  "bg": "#1b1f3b"
+ }
+}

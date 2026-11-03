@@ -1,0 +1,79 @@
+{
+  "fill": {
+    "linear-gradient": [
+      "display-p3:0.33000,0.55000,1.00000,1.00000",
+      "display-p3:0.36000,0.24000,0.82000,1.00000"
+    ],
+    "orientation": {
+      "start": {
+        "x": 0.5,
+        "y": 0
+      },
+      "stop": {
+        "x": 0.5,
+        "y": 1
+      }
+    }
+  },
+  "groups": [
+    {
+      "layers": [
+        {
+          "glass": false,
+          "image-name": "buttons.svg",
+          "name": "buttons",
+          "fill-specializations": [
+            {
+              "appearance": "dark",
+              "value": {
+                "solid": "extended-srgb:0.80000,0.84000,1.00000,0.85000"
+              }
+            }
+          ]
+        },
+        {
+          "glass": true,
+          "image-name": "remote.svg",
+          "name": "remote"
+        }
+      ],
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.5
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.3
+      },
+      "specular": true
+    },
+    {
+      "layers": [
+        {
+          "glass": true,
+          "image-name": "tv.svg",
+          "name": "tv"
+        },
+        {
+          "glass": false,
+          "image-name": "screen.svg",
+          "name": "screen"
+        }
+      ],
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.5
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.4
+      },
+      "specular": true
+    }
+  ],
+  "supported-platforms": {
+    "squares": [
+      "iOS"
+    ]
+  }
+}

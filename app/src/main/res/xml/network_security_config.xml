@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Apple's aerial CDN is signed by "Apple Server Authentication CA", which chains to
+         Apple Root CA. That root is not in Android's store, so trust it for this host only. -->
+    <domain-config>
+        <domain includeSubdomains="true">sylvan.apple.com</domain>
+        <trust-anchors>
+            <certificates src="@raw/apple_root_ca" />
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+</network-security-config>
